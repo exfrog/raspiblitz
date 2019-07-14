@@ -225,11 +225,11 @@ How to backup LND data in a rescue situation see next question "How can I recove
 
 ## How can I recover my coins from a failing RaspiBlitz?
 
-On a RaspiBlitz you have coins in your on-chain wallet (bitcoin wallet) and also coins in lightning channels. First we will try to recover all of them and even trying to keep your channels open with "Recover LND data". This that is not possible you can fall back to the second option "Recover from Wallet Seed".
+On a RaspiBlitz you have coins in your on-chain wallet (bitcoin wallet) and also coins in lightning channels. First we will try to recover all of them and even trying to keep your channels open with "Recover LND data". If that is not possible you can fall back to the second option "Recover from Wallet Seed".
 
 ### 1) Recover LND data
 
-Best to recover all your LND data/channels is when you still can SSH into the RaspiBlitz and the HDD is still useable/reachable (mounted) - even it shows some errors. If this is not possible anymore you should skip to the second option "Recover from Wallet Seed" or try to recover the LND data from the HDD (directory `lnd`) from another computer.
+The best time to recover all your LND data/channels is when you can still SSH into the RaspiBlitz and the HDD is still useable/reachable (mounted) - even it shows some errors. If this is not possible anymore you should skip to the second option "Recover from Wallet Seed" or try to recover the LND data from the HDD (directory `lnd`) from another computer.
 
 If you still can SSH in and HDD is readable, we can try to rescue/export your LND data (funds and channels) from a RaspiBlitz to then be able to restore it back to a fresh one. For this you can use the following procedure ...
 
@@ -247,13 +247,13 @@ Then to restore your old LND data and to recover your funds and channels:
 * then run: `/home/admin/config.scripts/lnd.rescue.sh restore`
 * follow the instructions of the script.
 
-This script will offer you a way to transfere the lnd-rescue file from your laptop to the new RaspiBlitz and will restore the old data. LND gets then restarted for you and after some time it should show you the status screen again with your old funds and channels.
+This script will offer you a way to transfer the lnd-rescue file from your laptop to the new RaspiBlitz and will restore the old data. LND gets then restarted for you and after some time it should show you the status screen again with your old funds and channels.
 
 **Be aware that if backup is some hours old, channels could have been closed by the other party and it may take some time until you see funds back on-chain. If backup is somewhat older then 1 day also the channel counter parties may have used your offline time to cheat you with an old state. And if your backup was not the latest state it could also been happening that you are posting an old channel state (seen as cheating) and funds of that channel get lost as punishment. So again .. this backup method can be risky, use with caution. But its recommended to try in recover and rescue situations - its not for regular backups.**
 
 ### 2) Recover from Wallet Seed
 
-Remember those 24 words you were writing down during the setup? Thats your "cipher seed" - now this words are important to recover your wallet. If you dont have them anymore: go back to option "Recover LND data" and check all possible ways to recover data from the HDD. If you still have the word seed: good, but read the following carefully:
+Remember those 24 words you were writing down during the setup? Thats your "cipher seed" - now these words are important to recover your wallet. If you dont have them anymore: go back to option "Recover LND data" and check all possible ways to recover data from the HDD. If you still have the word seed: good, but read the following carefully:
 
 With the word seed you can recover the on-chain funds that LND was managing for you - but it does not contain all the details about the channels you have open - its mostly the key to your funding wallet. If you were able to close all channels or never opened any channels, then everything should be OK and the best esults to recover on-chain funds from wallet seeds are reported to get from installing the Lightning Labs App on your laptop and use the wallet seed (and same wallet passwords): https://github.com/lightninglabs/lightning-app/releases
 
